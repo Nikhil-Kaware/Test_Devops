@@ -32,7 +32,7 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
     - name: Publish package
-      run: mvn deploy -Dversion=${{steps.version.outputs.new_tag}}
+      run: mvn --settings $GITHUB_WORKSPACE/.m2/settings.xml deploy -Dversion=${{steps.version.outputs.new_tag}}
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Print Home
