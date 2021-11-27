@@ -21,12 +21,11 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #        WITH_V: true
         DRY_RUN: true
-    - name: Set selected color
-      run: echo "::set-output name=mix-test::$(git tag)\n"
-      id: random-color-generator
-    - name: Get color
-      run: echo "The selected color is ${{ steps.random-color-generator.outputs.SELECTED_COLOR }}"
+    - name: Tag
+      run: git tag
     
+    - run: echo ${{ steps.outputs.Tag }}
+     
 #     - name: Maven Build
 #       run: mvn clean install
   
