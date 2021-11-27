@@ -25,7 +25,10 @@ jobs:
    
     - name: Maven Build
       run: mvn clean install
-  
+      
+    - name: Print Home
+      run: echo " $GITHUB_WORKSPACE"  
+    
     - uses: actions/checkout@v2
     - uses: actions/setup-java@v2
       with:
@@ -35,5 +38,10 @@ jobs:
       run: mvn --settings $GITHUB_WORKSPACE/.m2/settings.xml deploy -Dversion=${{steps.version.outputs.new_tag}}
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Print Home
-      run: echo " $GITHUB_WORKSPACE"
+          
+    - name: Create a Release
+      uses: elgohr/Github-Release-Action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      with:
+        args: MyReleaseMessage
