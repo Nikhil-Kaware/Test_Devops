@@ -25,7 +25,8 @@ jobs:
       id: tag 
       run: echo "::set-output name=mix-test::$(git tag)\n"
     
-    - run: echo "${{join(steps.tag.outputs.*, '\n')}}"
+    - run: echo "${{steps.tag.outputs.*}}"
+#    - run: echo "${{join(steps.tag.outputs.*, '\n')}}"
      
 #     - name: Maven Build
 #       run: mvn clean install
