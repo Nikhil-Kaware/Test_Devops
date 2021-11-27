@@ -15,14 +15,14 @@ jobs:
         fetch-depth: '0'
     - name: Ctag
       id: version
-      run: anothrNick/github-tag-action@1.36.0
+      uses: anothrNick/github-tag-action@1.36.0
       #run: echo "::set-output name=author::$(uses anothrNick/github-tag-action@1.36.0)"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #        WITH_V: true
         DRY_RUN: true
     - name: Sample
-      run: echo "Hello ${{steps.version.tag}} ${{steps.version.new_tag}}  today is Monday!"
+      run: echo "Hello ${{steps.version.tag}} ${{GITHUB_REF}}  today is Monday!"
     
 #     - name: Maven Build
 #       run: mvn clean install
