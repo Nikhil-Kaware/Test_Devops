@@ -20,13 +20,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #        WITH_V: true
-        DRY_RUN: true
-    - name: Tag
-      id: tag 
-      run: echo "::set-output name=mix-test::$(git tag)\n"
-    
-    - run: echo "${{steps.tag.outputs.*}}"
-#    - run: echo "${{join(steps.tag.outputs.*, '\n')}}"
+        DRY_RUN: true    
+    - run: echo "${{steps.version.outputs.new_tag}}"
+
      
 #     - name: Maven Build
 #       run: mvn clean install
