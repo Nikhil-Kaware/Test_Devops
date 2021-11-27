@@ -22,8 +22,7 @@ jobs:
 #        WITH_V: true
         DRY_RUN: true    
     - run: echo "${{steps.version.outputs.new_tag}}"
-
-     
+   
     - name: Maven Build
       run: mvn clean install
   
@@ -36,3 +35,5 @@ jobs:
       run: mvn deploy -Dversion=${{steps.version.outputs.new_tag}}
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Print Home
+      run: echo " $GITHUB_WORKSPACE"
