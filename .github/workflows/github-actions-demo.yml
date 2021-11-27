@@ -45,3 +45,10 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
         args: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Ctag
+      id: CreateTag
+      uses: anothrNick/github-tag-action@1.36.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: true
