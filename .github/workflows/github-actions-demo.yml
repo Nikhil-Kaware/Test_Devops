@@ -20,19 +20,20 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #        WITH_V: true
-        DRY_RUN: true
-    - name: Sample
-      run: echo "Hello ${{steps.version.tag}} ${{GITHUB_REF}}  today is Monday!"
-    
-#     - name: Maven Build
-#       run: mvn clean install
+        DRY_RUN: true    
+    - run: echo "${{steps.version.outputs.new_tag}}"
+   
+    - name: Maven Build
+      run: mvn clean install
   
-#     - uses: actions/checkout@v2
-#     - uses: actions/setup-java@v2
-#       with:
-#           java-version: '11'
-#           distribution: 'adopt'
-#     - name: Publish package
-#       run: mvn deploy -Dversion=r203 -Dregistry=https://github.com/Nikhil-Kaware/Test_Devops.git
-#       env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v2
+      with:
+          java-version: '11'
+          distribution: 'adopt'
+    - name: Publish package
+      run: mvn deploy -Dversion=${{steps.version.outputs.new_tag}}
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Print Home
+      run: echo " $GITHUB_WORKSPACE"
