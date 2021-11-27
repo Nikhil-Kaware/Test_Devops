@@ -21,9 +21,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #        WITH_V: true
         DRY_RUN: true
-        
-#     - name: Sample
-#       run: echo "Hello $DRY_RUN.tag $DRY_RUN.new_tag  today is Monday!"
+    - name: Sample
+      run: echo "Hello $outputs.tag $outputs.new_tag  today is Monday!"
     
 #     - name: Maven Build
 #       run: mvn clean install
